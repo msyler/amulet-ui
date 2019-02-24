@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { DataService } from './services/data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,6 +11,21 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class AppComponent {
-  title = 'amulet-ui';
+export class AppComponent implements OnInit {
+  
+  items = [];
+
+  displayedColumns: string[] = ['id', 'name', 'desc', 'lat', 'lng'];
+
+  constructor (private dataService: DataService) {}
+
+  ngOnInit () {
+    this.dataService.getItems().subscribe(res => {
+      this.items = res;
+    });
+  }
+
+  alert (msg) {
+    console.log(msg);
+  }
 }
