@@ -1,3 +1,48 @@
-<p>
-  catalog works!
-</p>
+<div class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Item name"  [(ngModel)]="item.item_name" value="">
+    </mat-form-field>
+  
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Item description"   [(ngModel)]="item.desc" value=""></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Model Id"   [(ngModel)]="item.model_id" value="">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="saveCatalogItem()">Save Catalog Item</button>
+  </div>
+
+<table mat-table [dataSource]="items" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="item_name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.item_name}} </td>
+    </ng-container>
+  
+    <!-- Desc Column -->
+    <ng-container matColumnDef="desc">
+      <th mat-header-cell *matHeaderCellDef> Desc </th>
+      <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+    </ng-container>
+
+    <!-- Desc Column -->
+    <ng-container matColumnDef="model_id">
+        <th mat-header-cell *matHeaderCellDef> Model_Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.model_id}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

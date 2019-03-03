@@ -13,10 +13,15 @@ export class DataService {
     this.baseURL = sdkService.getBaseURL();
   }
 
-  //ITEMS
-  getItems(filters = {}): Observable<any> {
+  //CATALOG ITEMS
+  getCatalogItems(filters = {}): Observable<any> {
     filters = JSON.stringify(filters);
-    return this.http.get(this.baseURL + 'items?filter=' + filters);
+    return this.http.get(this.baseURL + 'item-catalogs?filter=' + filters);
   }
+  
+  postCatalogItem(item): Observable<any> {
+    return this.http.post(this.baseURL + 'item-catalogs', item);
+  }
+
 
 }

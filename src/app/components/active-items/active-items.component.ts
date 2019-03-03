@@ -14,9 +14,9 @@ export class ActiveItemsComponent implements OnInit {
   constructor (private dataService: DataService) {}
 
   ngOnInit () {
-    this.dataService.getItems().subscribe(res => {
-      this.items = res;
-    });
+    //this.dataService.getItems().subscribe(res => {
+    //  this.items = res;
+    //});
   }
 
 

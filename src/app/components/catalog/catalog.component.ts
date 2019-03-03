@@ -8,15 +8,24 @@ import { DataService } from '../../services/data.service';
 })
 export class CatalogComponent implements OnInit {
 
+
+  item = {};
+
   items = [];
 
-  displayedColumns: string[] = ['id', 'name', 'desc', 'lat', 'lng'];
+  displayedColumns: string[] = ['id', 'item_name', 'desc', 'model_id'];
 
   constructor (private dataService: DataService) {}
 
   ngOnInit () {
-    this.dataService.getItems().subscribe(res => {
+    this.dataService.getCatalogItems().subscribe(res => {
       this.items = res;
+    });
+  }
+
+  saveCatalogItem () {
+    this.dataService.postCatalogItem(this.item).subscribe(res => {
+      console.log('Item created!');
     });
   }
 
