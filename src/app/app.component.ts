@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './services/data.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,19 +13,8 @@ import { DataService } from './services/data.service';
 })
 export class AppComponent implements OnInit {
   
-  items = [];
+  
+  constructor () {}
 
-  displayedColumns: string[] = ['id', 'name', 'desc', 'lat', 'lng'];
-
-  constructor (private dataService: DataService) {}
-
-  ngOnInit () {
-    this.dataService.getItems().subscribe(res => {
-      this.items = res;
-    });
-  }
-
-  alert (msg) {
-    console.log(msg);
-  }
+  ngOnInit () { }
 }

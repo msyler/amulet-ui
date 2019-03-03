@@ -1,0 +1,11 @@
+<div class="map-container">
+  <mgl-map [style]="'mapbox://styles/mapbox/streets-v9'" [zoom]="[15]" [center]="[-100.991440, 25.439106]">
+    <ng-container *ngFor="let item of items">
+      <mgl-marker  [lngLat]="[item.location.lng, item.location.lat]">
+        <div (click)="alert('Foo')" class="marker custom-marker">
+          <h3>{{item.name}}</h3>
+        </div>
+      </mgl-marker>
+    </ng-container>
+  </mgl-map>
+</div>
