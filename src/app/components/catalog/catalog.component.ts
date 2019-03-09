@@ -13,11 +13,15 @@ export class CatalogComponent implements OnInit {
 
   items = [];
 
-  displayedColumns: string[] = ['id', 'item_name', 'desc', 'model_id'];
+  displayedColumns: string[] = ['id', 'item_name', 'desc', 'model_id', 'delete'];
 
   constructor (private dataService: DataService) {}
 
   ngOnInit () {
+    this.loadCatalogItems();
+  }
+
+  loadCatalogItems(){
     this.dataService.getCatalogItems().subscribe(res => {
       this.items = res;
     });
@@ -25,7 +29,14 @@ export class CatalogComponent implements OnInit {
 
   saveCatalogItem () {
     this.dataService.postCatalogItem(this.item).subscribe(res => {
-      console.log('Item created!');
+      this.loadCatalogItems();
+      this.item = {};
+    });
+  }
+
+  deleteCatalogItem(id) {
+    this.dataService.deleteCatalogItem(id).subscribe(res => {
+      this.loadCatalogItems();
     });
   }
 

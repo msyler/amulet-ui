@@ -1,3 +1,12 @@
+
+<p-autoComplete [(ngModel)]="selectedCatalogItem" [suggestions]="catalogSuggestions" (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
+
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Lat Lng" [(ngModel)]="location" value="">
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="saveActiveItem()">Save Active Item</button>
+
 <table mat-table [dataSource]="items" class="mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
@@ -12,7 +21,7 @@
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.item_name}} </td>
   </ng-container>
 
   <!-- Weight Column -->
@@ -29,6 +38,12 @@
   <ng-container matColumnDef="lng">
     <th mat-header-cell *matHeaderCellDef> Lng </th>
     <td mat-cell *matCellDef="let element"> {{element.location.lng}} </td>
+  </ng-container>
+
+  <!-- Delete Column -->
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Delete </th>
+    <td mat-cell *matCellDef="let element" class="cell-button"> <i class="fas fa-trash-alt" (click)="deleteActiveItem(element.id)"></i> </td>
   </ng-container>
 
 
