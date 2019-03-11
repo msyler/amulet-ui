@@ -41,4 +41,10 @@ export class DataService {
     return this.http.post(this.baseURL + 'item-actives/', item);
   }
 
+  //USERS
+  getUsers(filters = {}): Observable<any> {
+    filters = JSON.stringify(filters);
+    return this.http.get(this.baseURL + 'tempusers?filter=' + filters);
+  }
+
 }

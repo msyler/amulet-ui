@@ -1,0 +1,52 @@
+<div>
+  <p-table [value]="users">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Username</th>
+        <th>Delete</th>
+        <th>Show Items</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{user.username}}</td>
+        <td>
+          <button pButton type="button" class="ui-button-danger" icon="fas fa-trash-alt" iconPos="left"
+            label="Delete"></button>
+        </td>
+        <td>
+          <button (click)="openDialog(user['item-actives'])" pButton type="button" icon="fas fa-cubes" iconPos="left"
+            label="Objects"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+
+  <p-dialog header="Title" [(visible)]="showDialog" [style]="{width: '500px'}">
+    <p-autoComplete [(ngModel)]="selectedActiveItem" [suggestions]="activeItemsSuggestions" (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
+    <button pButton type="button" class="ui-button-success" icon="fas fa-plus" iconPos="left"
+            label="Assign Item"></button>
+
+    <p-table [value]="items">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Desc</th>
+          <th>Release</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{item.item_name}}</td>
+          <td>{{item.desc}}</td>
+          <td>
+            <button pButton type="button" class="ui-button-warning" icon="fas fa-backspace" iconPos="left"
+              label="Release"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </p-dialog>
+</div>

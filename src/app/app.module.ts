@@ -23,8 +23,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     CatalogComponent,
     ActiveItemsComponent,
     ActiveItemsMapComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatButtonModule,
     MatInputModule,
     AutoCompleteModule,
+    TableModule,
+    DialogModule,
+    ButtonModule,
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoibXNpbGxlciIsImEiOiJjanNoeHJuMmYxaGJzNDRxZ3h1NWJrNXUxIn0.HzGVd3cMbsSqszrcCM8yTA' // Optionnal, can also be set per map (accessToken input of mgl-map)
     })
