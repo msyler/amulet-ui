@@ -1,27 +1,21 @@
-# AmuletUI
+# Amulet MVVP - UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
+## Overview
 
-## Development server
+Amulet is a geolocalized application with strong focus on traveling people, we want to create a gamification conduct based on on traveling and user commuting. We want to implement a new social network design, based on the user interaction with virtual objects.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Objective
 
-## Code scaffolding
+To create an Minimal Value Product (MVP) this will be  functional prototype that will be a functional prototype for further analysis.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+We want to create an application wich will create value through the combination of several technologies: DB, Middleware, Web Application, Mobile Application, Mapping, AR and other technologies.
 
-## Build
+##Specifications
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The mobile application will feature a mal, wich will show the user sorroundings, in the time, the map will show tha items (tridimentional object), wich the user will be able to get close and add them to his inventory.
 
-## Running unit tests
+If the user have an item on his inventory, the user will be able to add tags, text, video or images to the object.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This object can be left on the map, so another user will be able to pick it up and add more stories (tags, text, vide or images);
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+the user will be able to pass the owned items to another user near the actual location.
