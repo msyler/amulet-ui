@@ -25,14 +25,14 @@ the user will be able to pass the owned items to another user near the actual lo
 This Application consists on 3 projects:
 
 ### Web - UI Project:
-https://github.com/msyler/amulet-ui
+https://github.com/msyler/amulet-ui<br>
 This is the dashboard or control panel of the game.
 
 ### Web - API Project:
-https://github.com/msyler/amulet-api
+https://github.com/msyler/amulet-api<br>
 This project will provide all the API's for the Application and UI Project to work.
 
 ### Mobile Application - Unity Project:
-https://github.com/msyler/amulet-app
+https://github.com/msyler/amulet-app<br>
 This project will provide the application for the final user.
 
