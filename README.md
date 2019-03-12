@@ -24,12 +24,12 @@ the user will be able to pass the owned items to another user near the actual lo
 
 This project consists on 3 projects:
 
-# Web - UI Project:
+### Web - UI Project:
 This is the dashboard or control panel of the game.
 
-# Web - API Project:
+### Web - API Project:
 This project will provide all the API's for the Application and UI Project to work.
 
-# Mobile Application - Unity Project:
+### Mobile Application - Unity Project:
 This project will provide the application for the final user.
 
