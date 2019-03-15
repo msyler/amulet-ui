@@ -15,7 +15,7 @@
             label="Delete"></button>
         </td>
         <td>
-          <button (click)="openDialog(user['item-actives'])" pButton type="button" icon="fas fa-cubes" iconPos="left"
+          <button (click)="openDialog(user['item-actives'], user.id)" pButton type="button" icon="fas fa-cubes" iconPos="left"
             label="Objects"></button>
         </td>
       </tr>
@@ -23,10 +23,16 @@
   </p-table>
 
 
-  <p-dialog header="Title" [(visible)]="showDialog" [style]="{width: '500px'}">
+  <p-dialog header="Title" [(visible)]="showDialog" [style]="{width: '500px', height: '500px'}">
     <p-autoComplete [(ngModel)]="selectedActiveItem" [suggestions]="activeItemsSuggestions" (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
-    <button pButton type="button" class="ui-button-success" icon="fas fa-plus" iconPos="left"
-            label="Assign Item"></button>
+    <button 
+      (click)="assignItem(selectedActiveItem)"
+      pButton type="button" 
+      class="ui-button-success" 
+      icon="fas fa-plus" 
+      iconPos="left"
+      label="Assign Item">
+    </button>
 
     <p-table [value]="items">
       <ng-template pTemplate="header">
@@ -41,8 +47,15 @@
           <td>{{item.item_name}}</td>
           <td>{{item.desc}}</td>
           <td>
-            <button pButton type="button" class="ui-button-warning" icon="fas fa-backspace" iconPos="left"
-              label="Release"></button>
+            <button 
+              (click)="releaseItem(item)"
+              pButton 
+              type="button" 
+              class="ui-button-warning" 
+              icon="fas fa-backspace" 
+              iconPos="left"
+              label="Release">
+            </button>
           </td>
         </tr>
       </ng-template>

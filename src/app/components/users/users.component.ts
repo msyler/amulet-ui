@@ -19,13 +19,18 @@ export class UsersComponent implements OnInit {
   constructor(private dataService:DataService) { }
 
   ngOnInit() {
-    this.dataService.getUsers({"include": "item-actives"}).subscribe(res => {
-      this.users = res;
-      console.log(this.users);
-    });
+    
+    this.getUsersWithItems();  
 
     this.dataService.getActiveItems().subscribe(res => {
       this.activeItems = res;
+    });
+  }
+
+  getUsersWithItems() {
+    this.dataService.getUsers({"include": "item-actives"}).subscribe(res => {
+      this.users = res;
+      console.log(this.users);
     });
   }
 
@@ -39,8 +44,26 @@ export class UsersComponent implements OnInit {
     this.activeItemsSuggestions = this.activeItems.filter(option => option['item_name'].toLowerCase().includes(event.query));
   }
 
-  assignItem ( ) {
+  assignItem (itemToAssign) {
+    
+    itemToAssign['tempUserId'] = this.currentUserId;
 
+    this.dataService.updateActiveItem(itemToAssign).subscribe(res => {
+      console.log(res);
+      this.getUsersWithItems();  
+      this.items.push(itemToAssign);
+    });
+  }
+
+  releaseItem (itemToAssign) {
+
+    console.log(itemToAssign);
+
+    itemToAssign['tempUserId'] = "";
+
+    this.dataService.updateActiveItem(itemToAssign).subscribe(res => {
+      this.getUsersWithItems();  
+    });
   }
 
 }

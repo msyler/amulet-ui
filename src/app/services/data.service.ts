@@ -41,6 +41,10 @@ export class DataService {
     return this.http.post(this.baseURL + 'item-actives/', item);
   }
 
+  updateActiveItem(item): Observable<any> {
+    return this.http.put(this.baseURL + 'item-actives/' +  item.id, item);
+  }
+
   //USERS
   getUsers(filters = {}): Observable<any> {
     filters = JSON.stringify(filters);
