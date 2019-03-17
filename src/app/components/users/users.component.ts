@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { getInjectorIndex } from '@angular/core/src/render3/di';
 
 @Component({
   selector: 'app-users',
@@ -30,7 +31,12 @@ export class UsersComponent implements OnInit {
   getUsersWithItems() {
     this.dataService.getUsers({"include": "item-actives"}).subscribe(res => {
       this.users = res;
-      console.log(this.users);
+      //reaload dialog items from database (just in case the dialog is open)
+      this.users.forEach((_user) => {
+        if(_user.id === this.currentUserId){
+          this.items = _user['item-actives'];
+        }
+      });
     });
   }
 
@@ -44,24 +50,19 @@ export class UsersComponent implements OnInit {
     this.activeItemsSuggestions = this.activeItems.filter(option => option['item_name'].toLowerCase().includes(event.query));
   }
 
+  //Assign item to user and reload data
   assignItem (itemToAssign) {
-    
     itemToAssign['tempUserId'] = this.currentUserId;
-
     this.dataService.updateActiveItem(itemToAssign).subscribe(res => {
-      console.log(res);
       this.getUsersWithItems();  
       this.items.push(itemToAssign);
     });
   }
 
-  releaseItem (itemToAssign) {
-
-    console.log(itemToAssign);
-
-    itemToAssign['tempUserId'] = "";
-
-    this.dataService.updateActiveItem(itemToAssign).subscribe(res => {
+  //Remove item from user and reload data
+  releaseItem (itemToRelease) {
+    itemToRelease['tempUserId'] = "";
+    this.dataService.updateActiveItem(itemToRelease).subscribe(res => {
       this.getUsersWithItems();  
     });
   }
