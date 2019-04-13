@@ -1,23 +1,38 @@
 <mat-sidenav-container class="example-container">
   <mat-sidenav opened mode="side">
-    <mat-list>
+    <mat-nav-list>
 
       <mat-list-item>
-        <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a routerLink="/dashboard" routerLinkActive="active" mat-list-item>
+          <i class="fas fa-tachometer-alt"></i>
+          <span class="menu-item-text">Dashboard</span>
+        </a>
       </mat-list-item>
       <mat-list-item>
-        <a routerLink="/catalog" routerLinkActive="active">Catalog</a>
+        <a routerLink="/catalog" routerLinkActive="active" mat-list-item>
+          <i class="fas fa-list-ul"></i>
+          <span class="menu-item-text">Catalog</span>
+        </a>
       </mat-list-item>
       <mat-list-item>
-          <a routerLink="/active-items" routerLinkActive="active">Active Items</a>
+        <a routerLink="/active-items" routerLinkActive="active" mat-list-item>
+          <i class="fas fa-cubes"></i>
+          <span class="menu-item-text">Active Items</span>
+        </a>
       </mat-list-item>
       <mat-list-item>
-          <a routerLink="/active-items-map" routerLinkActive="active">Active Items Map</a>
+        <a routerLink="/active-items-map" routerLinkActive="active" mat-list-item>
+          <i class="fas fa-globe"></i>
+          <span class="menu-item-text">Active Items Map</span>
+        </a>
       </mat-list-item>
       <mat-list-item>
-          <a routerLink="/users" routerLinkActive="active">Users</a>
+        <a routerLink="/users" routerLinkActive="active" mat-list-item>
+          <i class="fas fa-users"></i>
+          <span class="menu-item-text">Users</span>
+        </a>
       </mat-list-item>
-     </mat-list>
+    </mat-nav-list>
   </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
