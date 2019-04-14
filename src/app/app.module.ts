@@ -29,6 +29,8 @@ import { ButtonModule } from 'primeng/button';
 
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,8 @@ import { UsersComponent } from './components/users/users.component';
     TableModule,
     DialogModule,
     ButtonModule,
+    InputTextModule,
+    InputTextareaModule,
     NgxMapboxGLModule.withConfig({
       accessToken: 'pk.eyJ1IjoibXNpbGxlciIsImEiOiJjanNoeHJuMmYxaGJzNDRxZ3h1NWJrNXUxIn0.HzGVd3cMbsSqszrcCM8yTA' // Optionnal, can also be set per map (accessToken input of mgl-map)
     })

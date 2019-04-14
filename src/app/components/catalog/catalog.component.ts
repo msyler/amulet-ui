@@ -10,10 +10,10 @@ export class CatalogComponent implements OnInit {
 
 
   item = {};
-
   items = [];
-
   displayedColumns: string[] = ['id', 'item_name', 'desc', 'model_id', 'delete'];
+  showDialog = false;
+
 
   constructor (private dataService: DataService) {}
 
@@ -38,6 +38,14 @@ export class CatalogComponent implements OnInit {
     this.dataService.deleteCatalogItem(id).subscribe(res => {
       this.loadCatalogItems();
     });
+  }
+
+  openDialog(_items, userId) {
+    this.showDialog = true;
+  }
+
+  cancelDialog() {
+    this.showDialog = false;
   }
 
 }
