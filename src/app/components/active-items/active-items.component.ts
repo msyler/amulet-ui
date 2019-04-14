@@ -10,15 +10,14 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./active-items.component.scss']
 })
 export class ActiveItemsComponent implements OnInit {
+  
   items = [];
   catalogItems = [];
   catalogSuggestions = [];
   selectedCatalogItem: any = {};
   location = "";
+  showDialog = false;
   
-
-  displayedColumns: string[] = ['id', 'name', 'desc', 'lat', 'lng', 'delete'];
-
   constructor (private dataService: DataService) {}
 
   ngOnInit () {
@@ -45,8 +44,6 @@ export class ActiveItemsComponent implements OnInit {
     });
   }
 
- 
-
   search(event) {
     this.catalogSuggestions = this.catalogItems.filter(option => option['item_name'].toLowerCase().includes(event.query));
   }
@@ -56,9 +53,6 @@ export class ActiveItemsComponent implements OnInit {
     let latLng = this.location.split(',');
     let lat = latLng[0].trim();
     let lng = latLng[1].trim();
-
-    console.log(this.selectedCatalogItem);
-    console.log(lat, lng);
 
     let object = {
       "item_name": this.selectedCatalogItem.item_name,
@@ -74,6 +68,16 @@ export class ActiveItemsComponent implements OnInit {
     this.dataService.addActiveItem(object).subscribe(res => {
       console.log(res);
       this.loadActiveItems();
+      this.cancelDialog();
     });
   }
+
+  openDialog(_items, userId) {
+    this.showDialog = true;
+  }
+
+  cancelDialog() {
+    this.showDialog = false;
+  }
+
 }

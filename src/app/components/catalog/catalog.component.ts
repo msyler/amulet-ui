@@ -31,6 +31,7 @@ export class CatalogComponent implements OnInit {
     this.dataService.postCatalogItem(this.item).subscribe(res => {
       this.loadCatalogItems();
       this.item = {};
+      this.showDialog = false;
     });
   }
 

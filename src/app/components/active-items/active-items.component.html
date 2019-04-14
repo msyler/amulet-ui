@@ -1,52 +1,58 @@
+<div class="container">
+  <div class="row-spacing row">
+    <button (click)="openDialog()" pButton type="button" icon="fas fa-cubes" iconPos="left"
+      label="Add new item"></button>
+  </div>
 
-<p-autoComplete [(ngModel)]="selectedCatalogItem" [suggestions]="catalogSuggestions" (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
+  <div class="row-spacing row">
+    <p-table [value]="items">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Desc</th>
+          <th>Location</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.item_name}}</td>
+          <td>{{item.desc}}</td>
+          <td>{{item.location.lat}}, {{item.location.lng}}</td>
+          <td>
+            <button (click)="deleteCatalogItem(item.id)" pButton type="button" class="ui-button-danger"
+              icon="fas fa-trash-alt" iconPos="left" label="Delete"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="Lat Lng" [(ngModel)]="location" value="">
-</mat-form-field>
+  <p-dialog header="Item" [(visible)]="showDialog" [style]="{width: '500px'}">
 
-<button mat-raised-button color="primary" (click)="saveActiveItem()">Save Active Item</button>
+    <div class="container">
+      <div class="row-spacing row">
+        <label style="width:150px;">Base object: </label>
+        <p-autoComplete [(ngModel)]="selectedCatalogItem" [suggestions]="catalogSuggestions"
+          (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
+      </div>
 
-<table mat-table [dataSource]="items" class="mat-elevation-z8">
+      <div class="row-spacing row">
+        <label style="width:150px;">Location: </label>
+        <input type="text" placeholder="Lat Lng" [(ngModel)]="location" pInputText>
+      </div>
 
-  <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
+    </div>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef> Id. </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
+    <p-footer>
+      <button (click)="cancelDialog()" class="ui-button-secondary" pButton type="button" icon="fas fa-times"
+        iconPos="left" label="Cancel"></button>
+      <button (click)="saveActiveItem()" pButton type="button" icon="fas fa-check" iconPos="left"
+        label="Add new item"></button>
+    </p-footer>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.item_name}} </td>
-  </ng-container>
+  </p-dialog>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="desc">
-    <th mat-header-cell *matHeaderCellDef> Desc </th>
-    <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="lat">
-    <th mat-header-cell *matHeaderCellDef> Lat </th>
-    <td mat-cell *matCellDef="let element"> {{element.location.lat}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="lng">
-    <th mat-header-cell *matHeaderCellDef> Lng </th>
-    <td mat-cell *matCellDef="let element"> {{element.location.lng}} </td>
-  </ng-container>
-
-  <!-- Delete Column -->
-  <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef> Delete </th>
-    <td mat-cell *matCellDef="let element" class="cell-button"> <i class="fas fa-trash-alt" (click)="deleteActiveItem(element.id)"></i> </td>
-  </ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</div>
