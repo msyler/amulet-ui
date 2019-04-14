@@ -1,37 +1,32 @@
-<div>
-  <p-table [value]="users">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Username</th>
-        <th>Delete</th>
-        <th>Show Items</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-user>
-      <tr>
-        <td>{{user.username}}</td>
-        <td>
-          <button pButton type="button" class="ui-button-danger" icon="fas fa-trash-alt" iconPos="left"
-            label="Delete"></button>
-        </td>
-        <td>
-          <button (click)="openDialog(user['item-actives'], user.id)" pButton type="button" icon="fas fa-cubes" iconPos="left"
-            label="Objects"></button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+<div class="container">
+  <div class="row-spacing row">
+    <p-table [value]="users">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Username</th>
+          <th style="width: 300px;">Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{user.username}}</td>
+          <td>
+            <button pButton class="ui-button-danger" icon="fas fa-trash-alt" type="button" iconPos="left"
+              label="Delete"></button>
+            <button pButton class="button-spacing" (click)="openDialog(user['item-actives'], user.id)"  type="button" icon="fas fa-cubes"
+              iconPos="left" label="Manage items"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 
 
   <p-dialog header="Title" [(visible)]="showDialog" [style]="{width: '500px', height: '500px'}">
-    <p-autoComplete [(ngModel)]="selectedActiveItem" [suggestions]="activeItemsSuggestions" (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
-    <button 
-      (click)="assignItem(selectedActiveItem)"
-      pButton type="button" 
-      class="ui-button-success" 
-      icon="fas fa-plus" 
-      iconPos="left"
-      label="Assign Item">
+    <p-autoComplete [(ngModel)]="selectedActiveItem" [suggestions]="activeItemsSuggestions"
+      (completeMethod)="search($event)" field="item_name" [forceSelection]="true"></p-autoComplete>
+    <button (click)="assignItem(selectedActiveItem)" pButton type="button" class="ui-button-success" icon="fas fa-plus"
+      iconPos="left" label="Assign Item">
     </button>
 
     <p-table [value]="items">
@@ -47,14 +42,8 @@
           <td>{{item.item_name}}</td>
           <td>{{item.desc}}</td>
           <td>
-            <button 
-              (click)="releaseItem(item)"
-              pButton 
-              type="button" 
-              class="ui-button-warning" 
-              icon="fas fa-backspace" 
-              iconPos="left"
-              label="Release">
+            <button (click)="releaseItem(item)" pButton type="button" class="ui-button-warning" icon="fas fa-backspace"
+              iconPos="left" label="Release">
             </button>
           </td>
         </tr>

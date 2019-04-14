@@ -25,7 +25,6 @@ export class ActiveItemsComponent implements OnInit {
     this.getCatalogItems();
   }
 
-
   loadActiveItems(){
     this.dataService.getActiveItems().subscribe(res => {
       this.items = res;
@@ -66,7 +65,6 @@ export class ActiveItemsComponent implements OnInit {
     }
 
     this.dataService.addActiveItem(object).subscribe(res => {
-      console.log(res);
       this.loadActiveItems();
       this.cancelDialog();
     });
@@ -79,5 +77,4 @@ export class ActiveItemsComponent implements OnInit {
   cancelDialog() {
     this.showDialog = false;
   }
-
 }
